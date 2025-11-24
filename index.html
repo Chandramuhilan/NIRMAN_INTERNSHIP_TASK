@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Skills Scoring Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .optional-input {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .optional-input label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .optional-input input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            width: 150px;
+            font-size: 1em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .results {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .overall-score {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .overall-score h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .score-value {
+            font-size: 4em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .score-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: #4ade80;
+            transition: width 1s ease-out;
+        }
+
+        .metadata {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .criterion-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .criterion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .criterion-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .criterion-score {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .metric-name {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .metric-score {
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .metric-feedback {
+            color: #666;
+            font-size: 0.95em;
+            margin-top: 5px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .keywords-found {
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+
+        .keyword-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.85em;
+        }
+
+        .keyword-missing {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎤 Communication Skills Scoring Tool</h1>
+            <p>AI-powered analysis of self-introduction transcripts</p>
+        </div>
+
+        <div class="content">
+            <div class="input-section">
+                <h2>Enter Transcript</h2>
+                <textarea id="transcript" placeholder="Paste your self-introduction transcript here...
+
+Example:
+Hello everyone, my name is John. I am 13 years old and studying in class 8th. I live with my family - my parents and my younger sister. I really enjoy playing basketball and reading science fiction books. My goal is to become a scientist. Thank you for listening."></textarea>
+                
+                <div class="optional-input">
+                    <label for="duration">Duration (seconds):</label>
+                    <input type="number" id="duration" placeholder="Optional" min="1">
+                    <span style="color: #666; font-size: 0.9em;">Optional: For speech rate analysis</span>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="scoreTranscript()">Score Transcript</button>
+                    <button class="btn-secondary" onclick="loadSample()">Load Sample</button>
+                    <button class="btn-secondary" onclick="clearAll()">Clear</button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <h3>⏳ Analyzing transcript...</h3>
+                <p>This may take a few seconds</p>
+            </div>
+
+            <div class="results" id="results">
+                <!-- Results will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000';
+
+        async function scoreTranscript() {
+            const transcript = document.getElementById('transcript').value.trim();
+            const duration = document.getElementById('duration').value;
+
+            if (!transcript) {
+                alert('Please enter a transcript to score');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('results').classList.remove('active');
+
+            try {
+                const payload = {
+                    transcript: transcript
+                };
+
+                if (duration) {
+                    payload.duration_seconds = parseInt(duration);
+                }
+
+                const response = await fetch(`${API_URL}/api/score`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayResults(data);
+                } else {
+                    showError(data.error || 'Error scoring transcript');
+                }
+            } catch (error) {
+                showError('Failed to connect to API. Make sure the backend is running on port 5000.');
+                console.error('Error:', error);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            
+            let html = `
+                <div class="overall-score">
+                    <h2>Overall Score</h2>
+                    <div class="score-value">${data.overall_score}/100</div>
+                    <div class="score-bar">
+                        <div class="score-fill" style="width: ${data.overall_score}%"></div>
+                    </div>
+                    <div class="metadata">
+                        <div><strong>Word Count:</strong> ${data.word_count}</div>
+                        ${data.metadata.wpm ? `<div><strong>WPM:</strong> ${data.metadata.wpm.toFixed(2)}</div>` : ''}
+                        ${data.metadata.duration_seconds ? `<div><strong>Duration:</strong> ${data.metadata.duration_seconds}s</div>` : ''}
+                    </div>
+                </div>
+            `;
+
+            // Criteria scores
+            data.criteria_scores.forEach(criterion => {
+                html += `
+                    <div class="criterion-card">
+                        <div class="criterion-header">
+                            <div class="criterion-name">${criterion.criterion}</div>
+                            <div class="criterion-score">${criterion.weighted_score}/${criterion.weight}</div>
+                        </div>
+                `;
+
+                // Metrics
+                criterion.metrics.forEach(metric => {
+                    html += `
+                        <div class="metric">
+                            <div class="metric-header">
+                                <span class="metric-name">${metric.metric}</span>
+                                <span class="metric-score">${metric.score}/${metric.max_score}</span>
+                            </div>
+                            <div class="metric-feedback">${metric.feedback}</div>
+                    `;
+
+                    // Display keywords found
+                    if (metric.keywords_found) {
+                        if (typeof metric.keywords_found === 'object' && !Array.isArray(metric.keywords_found)) {
+                            html += '<div class="keywords-found"><strong>Elements:</strong><br>';
+                            for (const [key, value] of Object.entries(metric.keywords_found)) {
+                                const tag = value.found ? 'keyword-tag' : 'keyword-tag keyword-missing';
+                                const status = value.found ? '✓' : '✗';
+                                html += `<span class="${tag}">${status} ${key}</span>`;
+                            }
+                            html += '</div>';
+                        } else if (Array.isArray(metric.keywords_found) && metric.keywords_found.length > 0) {
+                            html += '<div class="keywords-found"><strong>Keywords found:</strong> ';
+                            metric.keywords_found.forEach(kw => {
+                                html += `<span class="keyword-tag">${kw}</span>`;
+                            });
+                            html += '</div>';
+                        }
+                    }
+
+                    // Display filler words
+                    if (metric.found_fillers && metric.found_fillers.length > 0) {
+                        html += '<div class="keywords-found"><strong>Filler words:</strong> ';
+                        metric.found_fillers.forEach(filler => {
+                            html += `<span class="keyword-tag keyword-missing">${filler}</span>`;
+                        });
+                        html += '</div>';
+                    }
+
+                    html += '</div>';
+                });
+
+                html += '</div>';
+            });
+
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.add('active');
+
+            // Scroll to results
+            resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function showError(message) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<div class="error"><strong>Error:</strong> ${message}</div>`;
+            resultsDiv.classList.add('active');
+        }
+
+        async function loadSample() {
+            try {
+                const response = await fetch(`${API_URL}/api/sample`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('transcript').value = data.transcript;
+                    document.getElementById('duration').value = '52';
+                } else {
+                    alert('Failed to load sample transcript');
+                }
+            } catch (error) {
+                alert('Failed to connect to API');
+                console.error('Error:', error);
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('transcript').value = '';
+            document.getElementById('duration').value = '';
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('loading').classList.remove('active');
+        }
+
+        // Allow Enter key in textarea (Ctrl+Enter to submit)
+        document.getElementById('transcript').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                scoreTranscript();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+============================================================
+VIDEO ANALYSIS REPORT
+============================================================
+
+TRANSCRIPT:
+Hello everyone. Myself Muskan. Studying in class 8B section from Christ Public School. I am 13 years old. I live with my family. There are three people in my family. Me, my mother and my father. One special thing about my family is that they are very kindhearted to everyone and soft spoken. One thing I really enjoy is play, playing cricket and taking wickets. A fun fact about me is that I see in mirror and talk by myself. One thing people don't know about me is that I once stole a toy from one of my cousin. My favorite subject is science because it is very interesting. Through science I can explore the whole world and make the discoveries and improve the lives of. Others, thank you for listening.
+
+------------------------------------------------------------
+OVERALL SCORE: 87.0/100
+------------------------------------------------------------
+
+DETAILED BREAKDOWN:
+
+Content & Structure (Weight: 40%)
+Score: 35.0/40
+  - Salutation Level: 4/5
+    Feedback: Salutation: Good (Score: 4/5)
+  - Keyword Presence: 26/30
+    Feedback: Found 8/10 required elements
+  - Flow: 5/5
+    Feedback: Good opening salutation; Name introduced early; Has proper closing
+
+Speech Rate (Weight: 10%)
+Score: 6.0/10
+  - Words Per Minute: 6/10
+    Feedback: Speech rate: 146.83 WPM (Fast)
+
+Language & Grammar (Weight: 20%)
+Score: 16.0/20
+  - Grammar Score: 10/10
+    Feedback: Grammar quality: 100.0% (0 errors detected)
+  - Vocabulary Richness: 6/10
+    Feedback: Vocabulary diversity: TTR = 0.679 (89 unique words)
+
+Clarity (Weight: 15%)
+Score: 15.0/15
+  - Filler Word Rate: 15/15
+    Feedback: Filler word rate: 0.0% (0 fillers found)
+
+Engagement (Weight: 15%)
+Score: 15.0/15
+  - Sentiment/Positivity: 15/15
+    Feedback: Sentiment: 100.0% positive (1 positive words)
+
+============================================================
