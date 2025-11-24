@@ -2,8 +2,11 @@
 
 ## 📹 Task Explanation Video
 
-> 📁 The video file (`Task_explanation_video.mp4`) is also available in the repository root directory.
 
+https://github.com/user-attachments/assets/cb6c3eab-06dc-4e4e-bc1c-6faeba1b7dc6
+
+
+> 📁 The video file (`Task_explanation_video.mp4`) is also available in the repository root directory.
 ## ✅ Project Status: COMPLETE
 
 All deliverables have been successfully implemented and tested.
