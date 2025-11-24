@@ -1,5 +1,9 @@
 # Project Summary: Communication Skills Scoring Tool
 
+## 📹 Task Explanation Video
+
+> 📁 The video file (`Task_explanation_video.mp4`) is also available in the repository root directory.
+
 ## ✅ Project Status: COMPLETE
 
 All deliverables have been successfully implemented and tested.
